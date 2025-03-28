@@ -28,8 +28,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Movement")
 	float ImpulseStrength = 10.f;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sub | Movement")
+	UPROPERTY(EditAnywhereOnly, BlueprintReadOnly, Category = "Sub | Movement")
 	float TorqueStrength = 5.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Graphics")
+	UStaticMeshComponent* ShipMesh;
 
 private:
 	
