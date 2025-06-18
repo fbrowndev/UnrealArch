@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Sub.generated.h"
 
 UCLASS()
@@ -28,13 +29,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Movement")
 	float ImpulseStrength = 10.f;
 
-	UPROPERTY(EditAnywhereOnly, BlueprintReadOnly, Category = "Sub | Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Movement")
 	float TorqueStrength = 5.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Graphics")
-	UStaticMeshComponent* ShipMesh;
+	UStaticMeshComponent* SubMesh;
 
 private:
-	
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* CameraBoom;
 
 };
