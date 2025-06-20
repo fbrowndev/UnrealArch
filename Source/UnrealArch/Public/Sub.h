@@ -3,9 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "EnhancedInputLibrary.h"
 #include "Sub.generated.h"
+
+class UInputMappingContext;
+class UInputAction;
 
 UCLASS()
 class UNREALARCH_API ASub : public APawn
@@ -35,8 +40,19 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Graphics")
 	UStaticMeshComponent* SubMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Input")
+	UInputMappingContext* ShipMappingContext;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sub | Input")
+	UInputAction* PropelUpAction;
+
+	void PropelUp(const FInputActionValue& Value);
+
 private:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* ViewCamera;
 
 };

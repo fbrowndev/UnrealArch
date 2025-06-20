@@ -2,6 +2,7 @@
 
 
 #include "Sub.h"
+#include "EnhancedInputComponent.h"
 
 // Sets default values
 ASub::ASub()
@@ -14,6 +15,9 @@ ASub::ASub()
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(SubMesh);
+
+	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
+	ViewCamera->SetupAttachment(CameraBoom);
 }
 
 // Called when the game starts or when spawned
@@ -37,5 +41,18 @@ void ASub::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInputComponent->BindAction(PropelUpAction, ETriggerEvent::Triggered, this, &ASub::PropelUp);
+	}
 }
 
+
+void ASub::PropelUp(const FInputActionValue& Value)
+{
+
+	if (bool CurrentValue = Value.Get<bool>())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("IA_PropelUp triggered"));
+	}
+}
